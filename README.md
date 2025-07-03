@@ -26,6 +26,3 @@ Synthesize in Vivado:
 - Create new project
 - Add `src/sqrt_nonrestoring.v`
 - Apply constraints from `synth/vivado_constraints.xdc`
-
-## License
-MIT
