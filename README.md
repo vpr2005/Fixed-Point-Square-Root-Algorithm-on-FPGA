@@ -1,28 +1,13 @@
-# Fixed-Point Square Root on FPGA (Q8.8)
+# Fixed-Point Square Root (Q8.8) - Digit-by-Digit Non-Restoring
 
-Digit-by-digit (non-restoring) square root implementation in Verilog targeting Q8.8 fixed-point format.
+This project implements a digit-by-digit non-restoring square root for 16-bit Q8.8 fixed-point inputs.
 
-**Tools:** Verilog, Xilinx Vivado, ModelSim
+Contents:
+- rtl/fixed_sqrt.v : Sequential Verilog implementation (one iteration per clock)
+- tb/tb_fixed_sqrt.sv : SystemVerilog testbench that runs 100 random tests and checks <1% error
+- Makefile : simple simulation recipe for Icarus
 
-## Features
-- Q8.8 fixed-point support
-- Non-restoring square root algorithm
-- <1% error verified in simulation
-- FPGA-ready low-latency design
+How to run:
+  1. `iverilog -g2012 -o sim tb/tb_fixed_sqrt.sv rtl/fixed_sqrt.v`
+  2. `vvp sim`
 
-## File structure
-- `src/sqrt_nonrestoring.v` – Main Verilog module
-- `tb/tb_sqrt_nonrestoring.v` – Testbench
-- `sim/modelsim.do` – ModelSim compile/run script
-- `synth/vivado_constraints.xdc` – Example constraints
-
-## Usage
-Simulate:
-```bash
-vsim -do sim/modelsim.do
-```
-
-Synthesize in Vivado:
-- Create new project
-- Add `src/sqrt_nonrestoring.v`
-- Apply constraints from `synth/vivado_constraints.xdc`
